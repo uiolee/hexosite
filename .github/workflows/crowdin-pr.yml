@@ -35,6 +35,13 @@ jobs:
           owner: ${{ github.repository_owner }}
           repositories: "site"
 
+      - name: Get Translations Progress
+        run: |
+          node .github/workflows/get_translations_progress.mjs
+        env:
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
       - name: Download Translations && Create PR
         uses: crowdin/github-action@v2
         with:
